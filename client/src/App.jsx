@@ -56,7 +56,7 @@ export default function App() {
 
         {/* Dynamic Scrollable Canvas Area (Offset according to sidebar width) */}
         <div
-          className={`flex-1 transition-all duration-300 ease-out ${
+          className={`flex-1 h-screen overflow-y-auto overflow-x-hidden scroll-smooth transition-all duration-300 ease-out ${
             isSidebarCollapsed ? 'pl-16' : 'pl-16 sm:pl-72'
           }`}
         >

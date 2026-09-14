@@ -13,7 +13,7 @@ import {
 
 export default function LandingPage({ activeCategory, onQuickSos }) {
   return (
-    <main className="min-h-screen pt-14 pb-20 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto flex flex-col justify-start">
+    <main className="min-h-screen pt-14 pb-44 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto flex flex-col justify-start">
       {/* 
         Hero Strip: Single-column centered vertical stack
         YATRI SATHI Title -> Tagline -> Sector Badge -> Live Telemetry Stats
