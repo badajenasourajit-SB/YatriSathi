@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import ProfileModal from './ProfileModal';
 import { 
   X, 
   Home, 
@@ -12,7 +13,23 @@ import {
   Sparkles
 } from 'lucide-react';
 
-export default function NavigationDrawer({ isOpen, onClose, onSelectRoute, currentRoute = 'Home' }) {
+export default function NavigationDrawer({ isOpen, onClose, onSelectRoute, currentRoute = 'Home', onOpenProfile }) {
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+  // ESC key listener to close drawer when open
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
   const menuItems = [
     { id: 'home', label: 'Home', icon: Home, badge: 'Active' },
     { id: 'profile', label: 'Tourist Safety Profile', icon: ShieldCheck, badge: 'Verified' },
@@ -21,6 +38,21 @@ export default function NavigationDrawer({ isOpen, onClose, onSelectRoute, curre
     { id: 'privacy', label: 'Privacy & Legal', icon: FileText },
     { id: 'help', label: 'Help / 112 Helpline', icon: PhoneCall, highlight: true }
   ];
+
+  const handleMenuItemClick = (item) => {
+    if (item.id === 'profile') {
+      if (onOpenProfile) {
+        onOpenProfile();
+      } else {
+        setIsProfileOpen(true);
+      }
+      onClose();
+      return;
+    }
+
+    if (onSelectRoute) onSelectRoute(item.label);
+    onClose();
+  };
 
   return (
     <>
@@ -94,10 +126,7 @@ export default function NavigationDrawer({ isOpen, onClose, onSelectRoute, curre
               <button
                 key={item.id}
                 type="button"
-                onClick={() => {
-                  if (onSelectRoute) onSelectRoute(item.label);
-                  onClose();
-                }}
+                onClick={() => handleMenuItemClick(item)}
                 className={`w-full flex items-center justify-between px-3.5 py-3 rounded-lg text-sm font-medium transition-all group cursor-pointer ${
                   item.highlight
                     ? 'text-red-600 bg-red-50/70 hover:bg-red-100/70 border border-red-200/60'
@@ -154,6 +183,12 @@ export default function NavigationDrawer({ isOpen, onClose, onSelectRoute, curre
           </div>
         </div>
       </aside>
+
+      {/* Tourist Safety Profile Modal */}
+      <ProfileModal
+        isOpen={isProfileOpen}
+        onClose={() => setIsProfileOpen(false)}
+      />
     </>
   );
 }
