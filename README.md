@@ -53,48 +53,50 @@ The platform avoids generic corporate SaaS layouts in favor of a crisp, tactical
 
 ## 5. Monorepo Directory Structure
 
+```text
 yatrisathi/
-|-- .gitignore
-|-- .gitattributes
-|-- README.md
-|-- package.json
-|-- client/
-|   |-- index.html
-|   |-- package.json
-|   |-- vite.config.js
-|   `-- src/
-|       |-- main.jsx
-|       |-- App.jsx
-|       |-- index.css
-|       |-- components/
-|       |   |-- TopHeader.jsx
-|       |   |-- NavigationDrawer.jsx
-|       |   |-- BlueFeatureSidebar.jsx
-|       |   |-- FeatureCard.jsx
-|       |   `-- NotificationModal.jsx
-|       |-- data/
-|       |   `-- featuresData.js
-|       |-- pages/
-|       |   |-- LandingPage.jsx
-|       |   |-- MapPage.jsx
-|       |   |-- IncidentsPage.jsx
-|       |   |-- SafetyPage.jsx
-|       |   `-- AuthorityDashboardPage.jsx
-|       |-- services/
-|       |   |-- api.js
-|       |   |-- incidentService.js
-|       |   `-- riskZoneService.js
-|       `-- utils/
-|           `-- constants.js
-|-- backend/
-|   |-- package.json
-|   |-- server.js
-|   |-- models/
-|   |-- controllers/
-|   |-- routes/
-|   `-- services/
-`-- frontend/
-    `-- documentation/
+├── .gitignore
+├── .gitattributes
+├── README.md
+├── package.json
+├── client/
+│   ├── index.html
+│   ├── package.json
+│   ├── vite.config.js
+│   └── src/
+│       ├── main.jsx
+│       ├── App.jsx
+│       ├── index.css
+│       ├── components/
+│       │   ├── TopHeader.jsx
+│       │   ├── NavigationDrawer.jsx
+│       │   ├── BlueFeatureSidebar.jsx
+│       │   ├── FeatureCard.jsx
+│       │   └── NotificationModal.jsx
+│       ├── data/
+│       │   └── featuresData.js
+│       ├── pages/
+│       │   ├── LandingPage.jsx
+│       │   ├── MapPage.jsx
+│       │   ├── IncidentsPage.jsx
+│       │   ├── SafetyPage.jsx
+│       │   └── AuthorityDashboardPage.jsx
+│       ├── services/
+│       │   ├── api.js
+│       │   ├── incidentService.js
+│       │   └── riskZoneService.js
+│       └── utils/
+│           └── constants.js
+├── backend/
+│   ├── package.json
+│   ├── server.js
+│   ├── models/
+│   ├── controllers/
+│   ├── routes/
+│   └── services/
+└── frontend/
+    └── documentation/
+```
 
 ---
 
