@@ -26,18 +26,39 @@ export default function LandingPage({ activeCategory, onQuickSos }) {
           <span>Active Sector: Sambalpur & Hirakud Reservoir Corridor</span>
         </div>
 
-        {/* Hero Title with Captain America Bebas Neue Typography */}
-        <h1 className="font-hero text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-wider text-slate-900 leading-[0.95] uppercase">
-          SAFE TRAVELS.<br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-blue-600 to-sky-500">
-            ZERO UNCERTAINTY.
-          </span>
-        </h1>
+        {/* Brand Title with Interactive Floating & Neon Glow */}
+        <div className="group inline-flex flex-col items-center justify-center cursor-pointer transition-transform duration-300 hover:scale-[1.03]">
+          <h1 className="flex items-center gap-2 sm:gap-3 leading-none">
+            <span className="font-hero text-6xl sm:text-7xl lg:text-8xl tracking-wider text-slate-950">
+              YATRI
+            </span>
+            <span className="font-hero text-6xl sm:text-7xl lg:text-8xl tracking-wider text-blue-600 transition-all duration-300 group-hover:glow-blue-text group-hover:text-blue-500">
+              SATHI
+            </span>
+          </h1>
 
-        {/* Crisp Sub-Header (No text bloat) */}
-        <p className="mt-4 text-sm sm:text-base text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed">
-          Intelligent hazard telemetry, millisecond SOS dispatch, and offline safety breadcrumbs for every tourist journey.
-        </p>
+          {/* Animated Vector Doodle Underline */}
+          <svg
+            className="w-48 sm:w-64 h-4 mt-[-6px] overflow-visible"
+            viewBox="0 0 250 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 14C50 4 150 18 247 6C180 18 90 20 15 16"
+              stroke="#2563EB"
+              strokeWidth="4"
+              strokeLinecap="round"
+              className="animate-doodle"
+            />
+          </svg>
+        </div>
+
+        {/* Cinematic Two-Tone Tagline */}
+        <div className="mt-4 flex items-center justify-center gap-2 text-xl sm:text-2xl font-bold tracking-tight font-sans">
+          <span className="text-slate-900">Lost in wonder.</span>
+          <span className="text-blue-600 font-extrabold drop-shadow-sm">Never in the dark.</span>
+        </div>
 
         {/* Live Quick Stats Strip */}
         <div className="mt-8 grid grid-cols-3 gap-3 sm:gap-6 max-w-2xl mx-auto">
