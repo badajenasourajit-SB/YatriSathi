@@ -68,11 +68,13 @@ const statusDotStyles = {
   crimson: 'bg-red-500'
 };
 
-export default function FeatureCard({ item, index }) {
+export default function FeatureCard({ item, index, placement = "top" }) {
   const [isHovered, setIsHovered] = useState(false);
   const IconComponent = iconRegistry[item.icon] || Shield;
   const statusColorClass = statusBadgeStyles[item.statusTier] || statusBadgeStyles.blue;
   const dotColorClass = statusDotStyles[item.statusTier] || statusDotStyles.blue;
+
+  const isTop = placement === "top";
 
   return (
     <div
@@ -81,7 +83,9 @@ export default function FeatureCard({ item, index }) {
       onFocus={() => setIsHovered(true)}
       onBlur={() => setIsHovered(false)}
       tabIndex={0}
-      className="relative group outline-none select-none"
+      className={`relative group outline-none select-none transition-all duration-200 ${
+        isHovered ? 'z-40' : 'z-10'
+      }`}
     >
       {/* 
         Default Floating Card 
@@ -117,15 +121,18 @@ export default function FeatureCard({ item, index }) {
       </div>
 
       {/* 
-        Elevated Glowing Tooltip / Popover
-        Aura Specs: box-shadow: 0 0 20px rgba(37, 99, 235, 0.35); border: 1px solid rgba(96, 165, 250, 0.6); backdrop-filter: blur(8px);
+        Elevated Glowing Tooltip / Popover with Row-Aware Dynamic Positioning
+        Top row cards: Projects UPWARDS (bottom-full mb-3)
+        Bottom row cards: Projects DOWNWARDS (top-full mt-3)
       */}
       <div
         aria-hidden={!isHovered}
-        className={`absolute left-0 right-0 top-full mt-2 z-50 rounded-2xl bg-white/95 p-5 text-left transition-all duration-200 ease-out pointer-events-none transform ${
-          isHovered
-            ? 'opacity-100 translate-y-0 scale-100'
-            : 'opacity-0 -translate-y-2 scale-95'
+        className={`absolute left-0 right-0 z-40 rounded-2xl bg-white/95 p-5 text-left transition-all duration-200 ease-out pointer-events-none transform ${
+          isTop
+            ? 'bottom-full mb-3 origin-bottom ' +
+              (isHovered ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-2 scale-95')
+            : 'top-full mt-3 origin-top ' +
+              (isHovered ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-2 scale-95')
         }`}
         style={{
           boxShadow: '0 0 25px rgba(37, 99, 235, 0.35), 0 10px 25px -5px rgba(15, 23, 42, 0.1)',

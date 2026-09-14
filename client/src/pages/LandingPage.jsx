@@ -107,7 +107,12 @@ export default function LandingPage({ activeCategory, onQuickSos }) {
       */}
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 relative">
         {activeCategory.subFeatures.map((sub, idx) => (
-          <FeatureCard key={sub.id} item={sub} index={idx} />
+          <FeatureCard
+            key={sub.id}
+            item={sub}
+            index={idx}
+            placement={idx < 2 ? "top" : "bottom"}
+          />
         ))}
       </section>
 
