@@ -1,19 +1,11 @@
 {
-  "name": "yatrisathi-workspace",
+  "name": "yatrisathi",
   "version": "1.0.0",
   "private": true,
-  "description": "YatriSathi - Smart Tourist Safety & Incident Response System",
   "scripts": {
     "dev": "npm --prefix client run dev",
-    "build": "npm --prefix client run build",
-    "preview": "npm --prefix client run preview"
-  },
-  "keywords": [
-    "tourist-safety",
-    "incident-response",
-    "yatrisathi",
-    "smart-tourism"
-  ],
-  "author": "YatriSathi Team",
-  "license": "MIT"
+    "client": "npm --prefix client run dev",
+    "server": "npm --prefix server run dev",
+    "build": "npm --prefix client run build"
+  }
 }

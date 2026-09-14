@@ -1,6 +1,6 @@
-# YatriSathi Backend API (Placeholder)
+# YatriSathi Server API
 
-This directory is reserved for the upcoming Node.js / Express / Fastify API service.
+This directory contains the Node.js / Express API service.
 Features planned:
 - RESTful endpoints for telemetry & water discharge (Hirakud/Sambalpur)
 - Incident ingestion, media upload & deduplication worker

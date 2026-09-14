@@ -24,7 +24,7 @@ The platform avoids generic corporate SaaS layouts in favor of a crisp, tactical
 ## 3. Technology Stack
 
 ### Monorepo Architecture
-* Pattern: Multi-tier structure containing client, backend, and frontend documentation.
+* Pattern: Multi-tier structure containing client/ and server/.
 * Execution Root: Orchestrated development workflows executing via client/ (cd client && npm run dev).
 
 ### Client Application
@@ -87,15 +87,13 @@ yatrisathi/
 │       │   └── riskZoneService.js
 │       └── utils/
 │           └── constants.js
-├── backend/
-│   ├── package.json
-│   ├── server.js
-│   ├── models/
-│   ├── controllers/
-│   ├── routes/
-│   └── services/
-└── frontend/
-    └── documentation/
+└── server/
+    ├── package.json
+    ├── server.js
+    ├── models/
+    ├── controllers/
+    ├── routes/
+    └── services/
 ```
 
 ---
