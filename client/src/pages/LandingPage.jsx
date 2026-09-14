@@ -15,20 +15,13 @@ export default function LandingPage({ activeCategory, onQuickSos }) {
   return (
     <main className="min-h-screen pt-14 pb-20 px-4 sm:px-8 lg:px-12 max-w-7xl mx-auto flex flex-col justify-start">
       {/* 
-        Hero Strip: Clean, heroic centered banner with Captain America display font
-        "SAFE TRAVELS. ZERO UNCERTAINTY."
-        Quick live stats (500+ Monitored Zones, <3m SOS, 24/7 Telemetry)
+        Hero Strip: Single-column centered vertical stack
+        YATRI SATHI Title -> Tagline -> Sector Badge -> Live Telemetry Stats
       */}
-      <section className="pt-8 pb-10 sm:pt-12 sm:pb-14 text-center">
-        {/* Quick Active Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50/80 border border-blue-200/70 text-blue-800 text-xs font-semibold mb-5 shadow-xs">
-          <span className="w-2 h-2 rounded-full bg-blue-600 animate-ping" />
-          <span>Active Sector: Sambalpur & Hirakud Reservoir Corridor</span>
-        </div>
-
+      <section className="pt-4 pb-8 sm:pt-6 sm:pb-10 flex flex-col items-center text-center w-full">
         {/* Brand Title with Interactive Floating & Neon Glow */}
         <div className="group inline-flex flex-col items-center justify-center cursor-pointer transition-transform duration-300 hover:scale-[1.03]">
-          <h1 className="flex items-center gap-2 sm:gap-3 leading-none">
+          <h1 className="flex items-center justify-center gap-2 sm:gap-3 leading-none">
             <span className="font-hero text-6xl sm:text-7xl lg:text-8xl tracking-wider text-slate-950">
               YATRI
             </span>
@@ -54,14 +47,20 @@ export default function LandingPage({ activeCategory, onQuickSos }) {
           </svg>
         </div>
 
-        {/* Cinematic Two-Tone Tagline */}
-        <div className="mt-4 flex items-center justify-center gap-2 text-xl sm:text-2xl font-bold tracking-tight font-sans">
+        {/* Cinematic Two-Tone Tagline directly beneath doodle */}
+        <div className="mt-2 sm:mt-2.5 flex items-center justify-center gap-2 text-lg sm:text-xl md:text-2xl font-bold tracking-tight font-sans">
           <span className="text-slate-900">Lost in wonder.</span>
           <span className="text-blue-600 font-extrabold drop-shadow-sm">Never in the dark.</span>
         </div>
 
+        {/* Active Sector Telemetry Badge */}
+        <div className="mt-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50/80 border border-blue-200/70 text-blue-800 text-xs font-semibold shadow-xs">
+          <span className="w-2 h-2 rounded-full bg-blue-600 animate-ping" />
+          <span>Active Sector: Sambalpur & Hirakud Reservoir Corridor</span>
+        </div>
+
         {/* Live Quick Stats Strip */}
-        <div className="mt-8 grid grid-cols-3 gap-3 sm:gap-6 max-w-2xl mx-auto">
+        <div className="mt-6 grid grid-cols-3 gap-3 sm:gap-6 w-full max-w-2xl mx-auto">
           <div className="bg-white rounded-2xl p-3.5 sm:p-4 border border-slate-200/80 shadow-xs hover:border-blue-300 transition-colors">
             <div className="font-hero text-3xl sm:text-4xl text-blue-700 leading-none">
               500+
