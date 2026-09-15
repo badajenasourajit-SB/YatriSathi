@@ -3,8 +3,12 @@ import ProfileModal from './ProfileModal';
 import AboutModal from './AboutModal';
 import { 
   X, 
+  Home,
   ShieldCheck, 
+  WifiOff,
   Info, 
+  FileText,
+  PhoneCall,
   ExternalLink, 
   ChevronRight
 } from 'lucide-react';
@@ -35,8 +39,42 @@ export default function NavigationDrawer({
   }, [isOpen, onClose]);
 
   const menuItems = [
-    { id: 'profile', label: 'Tourist Safety Profile', icon: ShieldCheck, badge: 'Verified' },
-    { id: 'about', label: 'About YatriSathi', icon: Info }
+    { 
+      id: 'home', 
+      label: 'Home', 
+      icon: Home, 
+      badge: 'ACTIVE',
+      badgeStyle: 'bg-blue-600 text-white' 
+    },
+    { 
+      id: 'profile', 
+      label: 'Profile', 
+      icon: ShieldCheck, 
+      badge: 'VERIFIED' 
+    },
+    { 
+      id: 'settings', 
+      label: 'Offline Sync & Settings', 
+      icon: WifiOff, 
+      badge: 'CACHE ARMED' 
+    },
+    { 
+      id: 'about', 
+      label: 'About', 
+      icon: Info 
+    },
+    { 
+      id: 'privacy', 
+      label: 'Privacy & Legal', 
+      icon: FileText 
+    },
+    { 
+      id: 'help', 
+      label: 'Help / 112 Helpline', 
+      icon: PhoneCall, 
+      highlight: true,
+      href: 'tel:112' 
+    }
   ];
 
   const handleMenuItemClick = (item) => {
@@ -56,6 +94,12 @@ export default function NavigationDrawer({
       } else {
         setIsAboutOpen(true);
       }
+      onClose();
+      return;
+    }
+
+    if (item.id === 'help' || item.href) {
+      window.location.href = item.href || 'tel:112';
       onClose();
       return;
     }
@@ -116,19 +160,16 @@ export default function NavigationDrawer({
             const Icon = item.icon;
             const isActive = currentRoute === item.label;
 
-            return (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => handleMenuItemClick(item)}
-                className={`w-full flex items-center justify-between px-3.5 py-3 rounded-lg text-sm font-medium transition-all group cursor-pointer ${
-                  item.highlight
-                    ? 'text-red-600 bg-red-50/70 hover:bg-red-100/70 border border-red-200/60'
-                    : isActive
-                    ? 'text-blue-600 bg-blue-50/80 font-semibold'
-                    : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'
-                }`}
-              >
+            const rowClasses = `w-full flex items-center justify-between px-3.5 py-3 rounded-lg text-sm font-medium transition-all group cursor-pointer ${
+              item.highlight
+                ? 'text-red-600 bg-red-50 hover:bg-red-100 border border-red-200'
+                : isActive
+                ? 'text-blue-600 bg-blue-50/80 font-semibold'
+                : 'text-slate-700 hover:bg-slate-50 hover:text-slate-900'
+            }`;
+
+            const content = (
+              <>
                 <div className="flex items-center space-x-3">
                   <Icon
                     className={`w-4.5 h-4.5 ${
@@ -139,23 +180,59 @@ export default function NavigationDrawer({
                         : 'text-slate-400 group-hover:text-slate-600'
                     }`}
                   />
-                  <span>{item.label}</span>
+                  <span className={item.highlight ? 'font-semibold' : ''}>
+                    {item.label}
+                  </span>
                 </div>
 
                 <div className="flex items-center space-x-2">
                   {item.badge && (
                     <span
                       className={`text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full ${
-                        isActive
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-slate-100 text-slate-600'
+                        item.badgeStyle || (
+                          isActive
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-slate-100 text-slate-600'
+                        )
                       }`}
                     >
                       {item.badge}
                     </span>
                   )}
-                  <ChevronRight className="w-3.5 h-3.5 text-slate-400 group-hover:translate-x-0.5 transition-transform" />
+                  <ChevronRight
+                    className={`w-3.5 h-3.5 ${
+                      item.highlight
+                        ? 'text-red-400 group-hover:text-red-600'
+                        : 'text-slate-400 group-hover:text-slate-600'
+                    } group-hover:translate-x-0.5 transition-transform`}
+                  />
                 </div>
+              </>
+            );
+
+            if (item.href) {
+              return (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  onClick={() => {
+                    onClose();
+                  }}
+                  className={rowClasses}
+                >
+                  {content}
+                </a>
+              );
+            }
+
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => handleMenuItemClick(item)}
+                className={rowClasses}
+              >
+                {content}
               </button>
             );
           })}
