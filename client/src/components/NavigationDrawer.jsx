@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import ProfileModal from './ProfileModal';
+import AboutModal from './AboutModal';
 import { 
   X, 
-  Home, 
   ShieldCheck, 
-  WifiOff, 
   Info, 
-  FileText, 
-  PhoneCall, 
   ExternalLink, 
-  ChevronRight,
-  Sparkles
+  ChevronRight
 } from 'lucide-react';
 
-export default function NavigationDrawer({ isOpen, onClose, onSelectRoute, currentRoute = 'Home', onOpenProfile }) {
+export default function NavigationDrawer({ 
+  isOpen, 
+  onClose, 
+  onSelectRoute, 
+  currentRoute = 'Home', 
+  onOpenProfile,
+  onOpenAbout
+}) {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
 
   // ESC key listener to close drawer when open
   useEffect(() => {
@@ -31,12 +35,8 @@ export default function NavigationDrawer({ isOpen, onClose, onSelectRoute, curre
   }, [isOpen, onClose]);
 
   const menuItems = [
-    { id: 'home', label: 'Home', icon: Home, badge: 'Active' },
     { id: 'profile', label: 'Tourist Safety Profile', icon: ShieldCheck, badge: 'Verified' },
-    { id: 'settings', label: 'Offline Sync & Settings', icon: WifiOff, badge: 'Cache Armed' },
-    { id: 'about', label: 'About YatriSathi', icon: Info },
-    { id: 'privacy', label: 'Privacy & Legal', icon: FileText },
-    { id: 'help', label: 'Help / 112 Helpline', icon: PhoneCall, highlight: true }
+    { id: 'about', label: 'About YatriSathi', icon: Info }
   ];
 
   const handleMenuItemClick = (item) => {
@@ -45,6 +45,16 @@ export default function NavigationDrawer({ isOpen, onClose, onSelectRoute, curre
         onOpenProfile();
       } else {
         setIsProfileOpen(true);
+      }
+      onClose();
+      return;
+    }
+
+    if (item.id === 'about') {
+      if (onOpenAbout) {
+        onOpenAbout();
+      } else {
+        setIsAboutOpen(true);
       }
       onClose();
       return;
@@ -100,24 +110,8 @@ export default function NavigationDrawer({ isOpen, onClose, onSelectRoute, curre
           </button>
         </div>
 
-        {/* Tourist Safety Quick Badge */}
-        <div className="p-4 mx-4 my-4 rounded-xl bg-gradient-to-br from-blue-50 to-slate-50 border border-blue-100/80">
-          <div className="flex items-center justify-between mb-1.5">
-            <span className="text-xs font-semibold text-blue-900 flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-              Hirakud-Sambalpur Mesh
-            </span>
-            <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-700">
-              ONLINE
-            </span>
-          </div>
-          <p className="text-[11px] text-slate-600 leading-relaxed">
-            Incident classification running on edge telemetry. 24/7 National Emergency Trunk connected.
-          </p>
-        </div>
-
         {/* Menu Navigation Items */}
-        <nav className="flex-1 px-3 space-y-1 overflow-y-auto">
+        <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
           {menuItems.map((item) => {
             const Icon = item.icon;
             const isActive = currentRoute === item.label;
@@ -188,6 +182,12 @@ export default function NavigationDrawer({ isOpen, onClose, onSelectRoute, curre
       <ProfileModal
         isOpen={isProfileOpen}
         onClose={() => setIsProfileOpen(false)}
+      />
+
+      {/* About YatriSathi Modal */}
+      <AboutModal
+        isOpen={isAboutOpen}
+        onClose={() => setIsAboutOpen(false)}
       />
     </>
   );
